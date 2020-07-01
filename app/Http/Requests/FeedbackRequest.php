@@ -24,6 +24,7 @@ class FeedbackRequest extends FormRequest
     public function rules()
     {
         return [
+            'captcha' => 'required|captcha',
             'name' => 'required|string|min:3|max:100',
             'question' => 'required|string|min:10|max:200',
             'email' => 'required|email',

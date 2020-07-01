@@ -6,6 +6,7 @@ use App\Models\Feedback;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -22,7 +23,10 @@ class AdminController extends Controller
         return view('admin/index', ['feedback' => $feedback]);
     }
 
-    public function showAdminUpdate()
+    /**
+     * @return Application|Factory|View
+     */
+    public function showAdminUpdate(): View
     {
         $admin = User::find(1);
 
@@ -31,8 +35,9 @@ class AdminController extends Controller
 
     /**
      * @param Request $request
+     * @return RedirectResponse
      */
-    public function updateAdminEmail(Request $request)
+    public function updateAdminEmail(Request $request): RedirectResponse
     {
         $data = $request->validate([
             'email' => 'required|email'

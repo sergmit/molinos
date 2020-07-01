@@ -15,34 +15,41 @@
                         @csrf
                         <div class="form-group">
                             <label for="question">Вопрос</label>
-                            <input class="form-control" name="question"
+                            <input required class="form-control" name="question"
                                    type="text" id="question" value="">
                         </div>
                         <div class="form-group">
                             <label for="name">Имя</label>
-                            <input class="form-control" name="name" id="name" type="text" value="">
+                            <input required class="form-control" name="name" id="name" type="text" value="">
                         </div>
                         <div class="form-group">
                             <label for="email">Почта</label>
-                            <input class="form-control" name="email" id="email" type="email" value="">
+                            <input required class="form-control" name="email" id="email" type="email" value="">
                         </div>
                         <div class="form-group">
                             <div class="custom-file">
-                                <input type="file" name="files[]" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Выбирете файл</label>
+                                <input type="file" name="files[]" class="custom-file-input" id="file1">
+                                <label class="custom-file-label" for="file1">Выбирете файл</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="custom-file">
-                                <input type="file" name="files[]" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Выбирете файл</label>
+                                <input type="file" name="files[]" class="custom-file-input" id="file2">
+                                <label class="custom-file-label" for="file2">Выбирете файл</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="custom-file">
-                                <input type="file" name="files[]" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Выбирете файл</label>
+                                <input type="file" name="files[]" class="custom-file-input" id="file3">
+                                <label class="custom-file-label" for="file3">Выбирете файл</label>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            {!! html_entity_decode(captcha_img()) !!}
+                        </div>
+                        <div class="form-group">
+                            <label for="captcha">Captcha</label>
+                            <input required class="form-control" name="captcha" id="captcha" type="text">
                         </div>
                         <button class="btn btn-primary">Отправить</button>
                     </form>

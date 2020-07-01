@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FeedbackRequest;
-use App\Http\Services\FeedbackService;
-use App\Http\Services\FileUploadService;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
 
-    public function index()
+    /**
+     * @return Application|Factory|View
+     */
+    public function index(): View
     {
         return view('home.index');
     }
