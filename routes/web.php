@@ -21,9 +21,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('feedback', 'FeedbackController');
 
 Route::prefix('admin')->group(function() {
-    Route::get('/feedback', [AdminController::class, 'index'])->name('admin_main');
+    Route::get('/feedback', [AdminController::class, 'index'])->name('admin.main');
     Route::get('/email', [AdminController::class, 'showAdminUpdate'])->name('admin.email.show');
     Route::put('/email', [AdminController::class, 'updateAdminEmail']);
+    Route::post('/answer', [AdminController::class, 'answer']);
 });
 
 Route::get('/files/{file}', [FileController::class, 'index']);

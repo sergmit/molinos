@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property mixed name
  * @property mixed question
  * @property mixed email
+ * @method static find($feedbackId)
+ * @method static findOrFail($feedbackId)
  */
 class Feedback extends Model
 {

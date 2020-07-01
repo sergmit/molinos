@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AnswerEvent;
+use App\Mail\FeedbackAnswer;
 use App\Models\Feedback;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -52,5 +55,19 @@ class AdminController extends Controller
         $user->save();
 
         return redirect()->route('admin.email.show');
+    }
+
+    public function answer(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'answer' => 'required|string',
+            'feedbackId' => 'required|numeric'
+        ]);
+
+        $feedback = Feedback::findOrFail($data['feedbackId']);
+
+        Mail::to($feedback->email)->send(new FeedbackAnswer($feedback, $data['answer']));
+
+        return redirect()->route('admin.main');
     }
 }
